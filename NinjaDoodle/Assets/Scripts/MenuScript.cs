@@ -3,22 +3,14 @@ using System.Collections;
 
 public class MenuScript : MonoBehaviour {
 
-	void OnGUI()
+	public void CerrarAplicacion()
 	{
-		const int buttonWidth = 100;
-		const int buttonHeight = 128;
-		
+		Debug.Log ("clicko en salir");
+		Application.Quit ();
+	}
 
-		Rect buttonRect = new Rect(
-			Screen.width / 2 - (buttonWidth / 2),
-			(2 * Screen.height / 3) - (buttonHeight / 2),
-			buttonWidth,
-			buttonHeight
-			);
-		
-		if(GUI.Button(buttonRect,"Juega!"))
-		{
-			Application.LoadLevel("MainGame");
-		}
+	public void CargarPantallaPrincipal()
+	{
+		Application.LoadLevel("MainGame");
 	}
 }
