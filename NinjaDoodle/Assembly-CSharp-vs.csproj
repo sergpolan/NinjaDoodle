@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DestroyInvisible.cs" />
      <Compile Include="Assets\Scripts\Generate.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\PositionCamera.cs" />
      <Compile Include="Assets\Scripts\Wall.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
