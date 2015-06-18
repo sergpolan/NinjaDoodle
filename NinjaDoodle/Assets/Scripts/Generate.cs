@@ -24,7 +24,12 @@ public class Generate : MonoBehaviour {
 	{
 
 		print ("Creando");
-		Instantiate (wall_left, new Vector3(-4,13,-1),  Quaternion.identity);	
-		Instantiate (wall_right, new Vector3(4,13,-1),  Quaternion.identity);	
+		Vector3 v3WallLeft = new Vector3(0.01f, 1.2f, 1);
+		Vector3 v3WallRight = new Vector3(0.99f, 1.2f, 1);
+
+		Instantiate (wall_left, Camera.main.ViewportToWorldPoint (v3WallLeft), Quaternion.identity);
+		//Instantiate (wall_left, new Vector3(0,0,-1),  Quaternion.identity);	
+		Instantiate (wall_right, Camera.main.ViewportToWorldPoint (v3WallRight), Quaternion.identity);
+
 	}
 }
