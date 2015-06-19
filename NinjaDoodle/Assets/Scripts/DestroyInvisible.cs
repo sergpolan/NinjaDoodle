@@ -13,7 +13,6 @@ public class DestroyInvisible : MonoBehaviour {
 
 	void OnBecameVisible()
 	{
-		print ("Walls visible.  Setting to active.");
 		active=true;
 	}
 
@@ -26,7 +25,6 @@ public class DestroyInvisible : MonoBehaviour {
 	{
 		if(active==true)
 		{
-			print("Walls invisible.  Destroying.");
 			active=false;
 			Destroy (gameObject);
 		}
