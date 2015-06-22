@@ -16,7 +16,12 @@ public class Generate : MonoBehaviour {
 	Vector3 v3VerticalWallRight = new Vector3(0.83f, 1.2f, 1);
 	Vector3 v3Player = new Vector3(0.5f, 0.5f, 1);
 
+	private int screenWidth;
+	private int screenHeight;
+	public float scale = 0.001f;
+
 	void Start () {
+		wall_left.transform.localScale = new Vector3(scale, scale, 0);
 		Invoke ("CreatingPlayer", 0.5f);
 		Invoke ("CreatinVerticalWall", 0.6f);
 		InvokeRepeating ("CreatingWall", 1f, 0.6f);

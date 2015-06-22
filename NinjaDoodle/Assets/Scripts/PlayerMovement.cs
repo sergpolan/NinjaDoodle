@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 	private Animator animator;
 	private bool moveRight = true;
 	private GameObject lastWallHitted;
+	public float jumpX = 10;
+	public float jumpY = 7.5f;
 		
 	void Start()
 	{
@@ -18,10 +20,14 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetMouseButtonDown (0)) {
 			Debug.Log ("Pressed left click.");
 			playerJump();
+			GetComponent<Rigidbody2D> ().gravityScale = 1;
 		}
+		//if (Input.GetMouseButtonDown (1)) {
+		//	Debug.Log ("Pressed right click.");
+		//	animator.SetBool("glide", true);
+		//}
 		if (Input.GetMouseButtonDown (1)) {
 			Debug.Log ("Pressed right click.");
-			animator.SetBool("glide", true);
 		}
 		if (Input.GetMouseButtonDown (2)) {
 			Debug.Log ("Pressed middle click.");
@@ -37,8 +43,9 @@ public class PlayerMovement : MonoBehaviour
 	//Metodo que cuando colisiona muere
 	void OnCollisionEnter2D(Collision2D other)
 	{
+		GetComponent<Rigidbody2D> ().gravityScale = 0.1f;
 		if (other.gameObject.tag == "WallIdle") {
-			//Destroy(other.gameObject);
+			GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			if(lastWallHitted != null)
 					lastWallHitted.SetActive (true);
 			lastWallHitted = other.gameObject;
@@ -62,10 +69,10 @@ public class PlayerMovement : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 		if (moveRight) {
-			jumpForce = new Vector2 (10, 0);
+			jumpForce = new Vector2 (jumpX, jumpY);
 			print("Vamos derecha");
 		} else {
-			jumpForce = new Vector2 (-10, 0);
+			jumpForce = new Vector2 (-jumpX, jumpY);
 			print("Vamos izquierda");
 		}
 		GetComponent<Rigidbody2D> ().AddForce (jumpForce, ForceMode2D.Impulse);
