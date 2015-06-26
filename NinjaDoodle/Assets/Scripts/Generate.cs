@@ -3,10 +3,11 @@ using System.Collections;
 
 public class Generate : MonoBehaviour {
 
-	public GameObject wall_left;
-	public GameObject wall_right;
-	public GameObject vWall_left;
-	public GameObject vWall_right;
+	private readonly float defaultScale = 1f;
+	private readonly float defaultGenerateVelocity = 0.6f;
+
+	public GameObject wall;
+	public GameObject vWall;
 	public GameObject player;
 	private Renderer wallRender;
 
@@ -18,19 +19,23 @@ public class Generate : MonoBehaviour {
 
 	private int screenWidth;
 	private int screenHeight;
-	public float scale = 0.001f;
+	private float velocidadGeneracion;
+	public float scale;
 
 	void Start () {
-		wall_left.transform.localScale = new Vector3(scale, scale, 0);
+		CalculateScale ();
+
+		wall.transform.localScale = new Vector3(scale, scale, 0);
 		Invoke ("CreatingPlayer", 0.5f);
 		Invoke ("CreatinVerticalWall", 0.6f);
-		InvokeRepeating ("CreatingWall", 1f, 0.6f);
+		InvokeRepeating ("CreatingWall", 1f, velocidadGeneracion);
+
 	}
 	
 	void CreatingWall()
 	{
-		Instantiate (wall_left, Camera.main.ViewportToWorldPoint (v3WallLeft), Quaternion.identity);
-		Instantiate (wall_right, Camera.main.ViewportToWorldPoint (v3WallRight), Quaternion.identity);
+		Instantiate (wall, Camera.main.ViewportToWorldPoint (v3WallLeft), Quaternion.identity);
+		Instantiate (wall, Camera.main.ViewportToWorldPoint (v3WallRight), Quaternion.identity);
 	}
 
 	void CreatingPlayer()
@@ -41,7 +46,14 @@ public class Generate : MonoBehaviour {
 
 	void CreatinVerticalWall()
 	{
-		Instantiate (vWall_left, Camera.main.ViewportToWorldPoint (v3VerticalWallLeft), Quaternion.identity);
-		Instantiate (vWall_right, Camera.main.ViewportToWorldPoint (v3VerticalWallRight), Quaternion.identity);
+		Instantiate (vWall, Camera.main.ViewportToWorldPoint (v3VerticalWallLeft), Quaternion.identity);
+		Instantiate (vWall, Camera.main.ViewportToWorldPoint (v3VerticalWallRight), Quaternion.identity);
+	}
+
+	void CalculateScale ()
+	{
+		float diferencia = defaultScale / scale;
+		print (diferencia);
+		velocidadGeneracion = defaultGenerateVelocity / diferencia;
 	}
 }
