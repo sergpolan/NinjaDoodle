@@ -59,7 +59,9 @@ public class PlayerMovement : MonoBehaviour
 	void Die()
 	{
 		Debug.Log ("Muere el player1------------------------------");
-		Application.LoadLevel(Application.loadedLevel);
+		NotificationCenter.DefaultCenter ().PostNotification (this, "DeadPlayerGameOver");
+
+		//Application.LoadLevel(Application.loadedLevel);
 	}
 
 	//Añade una fuerza al personaje dependiendo de si el personaje se
